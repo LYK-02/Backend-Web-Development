@@ -1,4 +1,5 @@
-const secure = process.env.COOKIE_SECURE === 'true';
+const isProduction = process.env.NODE_ENV === 'production';
+const secure = isProduction || process.env.COOKIE_SECURE === 'true';
 const sessionTtlMs = Number(process.env.SESSION_TTL_MS || 60 * 60 * 1000);
 
 if (!Number.isSafeInteger(sessionTtlMs) || sessionTtlMs <= 0) {

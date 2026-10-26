@@ -9,7 +9,7 @@ npm run setup
 npm run dev
 ```
 
-Set `COOKIE_SECRET` in `.env` to at least 32 random characters. Keep `COOKIE_SECURE=false` for local HTTP; production must use HTTPS with `COOKIE_SECURE=true`.
+Set `COOKIE_SECRET` in `.env` to at least 32 random characters. Keep `COOKIE_SECURE=false` for local HTTP. The application always enables `Secure` when `NODE_ENV=production`, regardless of the `COOKIE_SECURE` value, so production must use HTTPS.
 
 Seeded demo account: `sam@example.com` / `SessionDemo!48`.
 
@@ -50,4 +50,5 @@ curl -i -b old-cookies.txt http://localhost:3000/auth/me
 ```
 
 Login and logout use the same `httpOnly`, `sameSite`, `secure`, `path`, and signing
-configuration. Set `COOKIE_SECURE=true` only when serving over HTTPS.
+configuration. Set `COOKIE_SECURE=true` when serving local HTTPS; production enables it
+automatically through `NODE_ENV=production`.
